@@ -1,0 +1,38 @@
+<?php
+  class Pages extends Controller{
+    public function __construct(){
+     
+    }
+
+    // Load Homepage
+    public function index(){
+      // If logged in, redirect to posts
+      if(isset($_SESSION['user_id'])){
+        redirect('posts');
+      }
+
+      //Set Data
+      $data = [
+        'title' => 'Welcome To SharePosts',
+        'description' => 'Simple social network built on the CraterMVC PHP framework'
+      ];
+
+      // Load homepage/index view
+      $this->view('pages/index', $data);
+    }
+
+    public function about(){
+      //Set Data
+      $data = [
+        'version' => '1.0.0'
+      ];
+
+        try {
+      $this->view('pages/about', $data);
+
+        } catch (Exception $e) {
+            echo $e;
+        }
+      // Load about view
+    }
+  }
